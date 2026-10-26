@@ -98,9 +98,6 @@ orientativament, la següent referència:
 citation("mapSpainHist")
 ```
 
-- Vall Prat, P. (2026). *mapSpainHist: Historical Municipal Boundaries
-  of Spain (1900-2001)*. Paquet d’R, versió 0.1.0.
-  <https://github.com/pauvallprat/mapSpainHist>
 - Vall Prat, P. (2026). *Historical municipal boundaries of Spain,
   1900-2001* \[conjunt de dades\]. Zenodo.
   <https://doi.org/10.5281/zenodo.23663208>

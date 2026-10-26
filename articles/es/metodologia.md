@@ -134,11 +134,9 @@ ningún distrito a Cortes en 1920.
 - **Datos** (geometrías y tablas `censos` y `unitats`): licencia
   Creative Commons Atribución 4.0 Internacional (CC BY 4.0).
 
-Si utiliza el paquete o los datos, cítelos (`citation("mapSpainHist")`):
+Si utiliza el paquete y/o sus datos, cítelos. Una forma orientativa de
+referenciarlos es la siguiente (`citation("mapSpainHist")`):
 
-- Vall Prat, P. (2026). *mapSpainHist: Historical Municipal Boundaries
-  of Spain (1900-2001)*. Paquete de R, versión 0.1.0.
-  <https://github.com/pauvallprat/mapSpainHist>
 - Vall Prat, P. (2026). *Historical municipal boundaries of Spain,
   1900-2001* \[conjunto de datos\]. Zenodo.
   <https://doi.org/10.5281/zenodo.23663208>

@@ -130,12 +130,9 @@ census). Melilla was not assigned to any district for the Cortes in
 - **Data** (geometries and the `censos` and `unitats` tables): Creative
   Commons Attribution 4.0 International licence (CC BY 4.0).
 
-If you use the package or the data, please cite them
+If you use the package and/or its data, please cite them
 (`citation("mapSpainHist")`):
 
-- Vall Prat, P. (2026). *mapSpainHist: Historical Municipal Boundaries
-  of Spain (1900-2001)*. R package version 0.1.0.
-  <https://github.com/pauvallprat/mapSpainHist>
 - Vall Prat, P. (2026). *Historical municipal boundaries of Spain,
   1900-2001* \[Data set\]. Zenodo.
   <https://doi.org/10.5281/zenodo.23663208>
