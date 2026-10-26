@@ -76,7 +76,7 @@ Si detecteu un error als mapes o a les dades, o teniu algun suggeriment, feu ser
 
 ## Com citar-lo
 
-Si feu servir el paquet o les seves dades, citeu-los. Podeu obtenir la referència amb:
+Si feu servir el paquet i/o les dades, citeu-ho. Podeu fer servir, orientativament, la següent referència:
 
 ```r
 citation("mapSpainHist")
