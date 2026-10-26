@@ -1,0 +1,86 @@
+# Guía de funciones y datos
+
+Esta guía resume en castellano el contenido de la ayuda del paquete
+(que, por requisito de CRAN, está en inglés). Para la referencia
+completa, véase la sección *Reference* de la web o `?nombre_función` en
+R.
+
+## Funciones de mapas
+
+### `esp_get_munic_hist()`
+
+Municipios vigentes en un censo.
+
+| Argumento | Descripción |
+|----|----|
+| `year` | Año del censo: 1900, 1910, 1920, 1930, 1940, 1950, 1960, 1970, 1981, 1991 o 2001. |
+| `epsg` | Sistema de referencia de salida. Por defecto, 4258 (ETRS89), como mapSpain. |
+| `moveCAN` | Posición de las Canarias. `FALSE` (por defecto): posición real. `TRUE`: junto a la península, igual que [`mapSpain::esp_move_can()`](https://ropenspain.github.io/mapSpain/reference/esp_move_can.html); para dibujar el recuadro que las separa, use [`mapSpain::esp_get_can_box()`](https://ropenspain.github.io/mapSpain/reference/esp_get_can_box.html). Un vector `c(lon, lat)` añade un desplazamiento adicional. |
+| `include_nonmunicipal` | Si es `FALSE`, se excluyen los territorios no municipales (códigos 53xxx). |
+| `census_data` | Si es `TRUE` (por defecto), se añaden los datos del censo (tabla `censos`). Si es `FALSE`, solo se devuelve `cod_ine`, `no_munic` y la geometría. |
+| `cache_dir` | Carpeta de la caché. Por defecto, la de [`mhist_cache_dir()`](https://pauvallprat.github.io/mapSpainHist/reference/mhist_cache_dir.md). |
+| `update_cache` | Si es `TRUE`, vuelve a descargar las geometrías. |
+| `verbose` | Si es `TRUE`, muestra mensajes de la descarga. |
+
+Devuelve un objeto `sf` con una fila por municipio, o `NULL` (con un
+mensaje) si no se pueden descargar las geometrías.
+
+### `esp_get_prov_hist()`, `esp_get_pj_hist()`, `esp_get_circ_hist()`
+
+Provincias (todos los censos), partidos judiciales (1900, 1910, 1920 y
+1930) y distritos electorales (1920: distritos a Cortes; 1931, 1933 y
+1936: circunscripciones de la II República). Tienen los argumentos
+`year`, `epsg`, `moveCAN`, `cache_dir`, `update_cache` y `verbose` como
+[`esp_get_munic_hist()`](https://pauvallprat.github.io/mapSpainHist/reference/esp_get_munic_hist.md),
+y:
+
+| Argumento | Descripción |
+|----|----|
+| `census_data` | Si es `TRUE` (por defecto), se añade la suma de los datos del censo de los municipios de cada unidad. Para los distritos de 1920 se usa el censo de 1920; para las circunscripciones de la II República, el de 1930. |
+
+Devuelven un objeto `sf` con las columnas `cod_unit`, `nom`, `n_mun`
+(número de municipios) y, en su caso, `hogares`, `pder`, `phec` y
+`pob_serie`.
+
+## Funciones auxiliares
+
+| Función | Descripción |
+|----|----|
+| [`mhist_census_years()`](https://pauvallprat.github.io/mapSpainHist/reference/mhist_census_years.md) | Años de censo disponibles. |
+| [`mhist_cache_dir()`](https://pauvallprat.github.io/mapSpainHist/reference/mhist_cache_dir.md) | Carpeta de la caché donde se guardan las geometrías. |
+| [`mhist_set_cache_dir()`](https://pauvallprat.github.io/mapSpainHist/reference/mhist_cache_dir.md) | Cambia la carpeta de la caché para la sesión. |
+| [`mhist_clear_cache()`](https://pauvallprat.github.io/mapSpainHist/reference/mhist_clear_cache.md) | Borra las geometrías descargadas. |
+
+## Tablas de datos
+
+### `censos`
+
+Datos de los censos de población de cada municipio entre 1842 y 2011. Un
+municipio está vigente en un censo cuando tiene datos de hogares
+(`hogares`).
+
+| Columna | Descripción |
+|----|----|
+| `cod_ine` | Código INE del municipio (5 cifras; 6 para los municipios desaparecidos antes de 1900). |
+| `censo` | Año del censo. |
+| `municipio` | Nombre del municipio. |
+| `prov` | Provincia. |
+| `cod_ccaa`, `ccaa` | Código y nombre de la comunidad autónoma. |
+| `PJ` | Partido judicial (disponible de 1897 a 1930). |
+| `hogares` | Hogares. |
+| `pder` | Población de derecho. |
+| `phec` | Población de hecho. |
+| `pob_serie` | Serie de población continua. |
+| `no_munic` | 1 para los territorios no municipales (53xxx), 0 para el resto. |
+
+### `unitats`
+
+Equivalencia entre municipios y unidades superiores, útil para agregar
+datos municipales.
+
+| Columna | Descripción |
+|----|----|
+| `tipus` | `"prov"` (provincia), `"pj"` (partido judicial) o `"circ"` (distrito electoral). |
+| `any` | Año del censo (provincias y partidos judiciales) o de las elecciones (1920, 1931, 1933, 1936). |
+| `cod_ine` | Código INE del municipio. |
+| `cod_unit` | Código de la unidad (2 cifras para las provincias, 4 para el resto). |

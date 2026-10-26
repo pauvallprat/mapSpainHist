@@ -1,0 +1,144 @@
+# Metodologia, fonts i advertiments
+
+## Avís important sobre l’ús de les dades
+
+**La forma dels municipis és aproximada.** Per a la major part dels
+municipis històrics que ja no existeixen no es disposa de cartografia
+dels seus límits. Els polígons s’han reconstruït de manera aproximada i,
+per tant:
+
+- Els mapes són **útils especialment per fer representacions gràfiques
+  de dades a nivell municipal**.
+- **Cal fer-los servir amb cautela** quan el que es vol tenir en compte
+  són **variables geogràfiques** com la **superfície** dels municipis,
+  les **distàncies** a altres punts, la contigüitat precisa o la
+  ubicació exacta de les fronteres.
+- Són una **aproximació útil però imperfecta**, i això s’ha de tenir
+  present en qualsevol anàlisi.
+
+El mateix s’aplica a les unitats superiors (partits judicials i
+districtes electorals), que es construeixen agregant els municipis.
+
+## 1. Construcció dels polígons municipals
+
+1.  **Punt de partida.** Es va agafar la divisió municipal més antiga
+    disponible amb límits oficials, de principis dels anys 2000 (SIANE,
+    Instituto Geográfico Nacional, distribuïda pel paquet d’R
+    **mapSpain**).
+2.  **Reconstrucció per a cada cens.** A partir d’aquesta divisió es va
+    generar, de manera aproximada i manual, un polígon per a cadascun
+    dels municipis existents en cada cens (mapes de 1900, 1930, 1950 i
+    1970):
+    - Quan un municipi actual és el resultat de la fusió de diversos
+      municipis històrics, el seu territori es va dividir entre els
+      municipis antics.
+    - La forma del polígon es va dibuixar procurant sempre que el **cap
+      de municipi** (el nucli habitat que generalment dona nom al
+      municipi) quedés inclòs dins del polígon.
+    - Quan es coneixien els **nuclis que formaven part del municipi**,
+      també es va procurar que quedessin inclosos dins del polígon.
+3.  **Municipis vigents.** Els municipis de cada cens són els que tenen
+    dades de llars a la sèrie de censos de l’Instituto Nacional de
+    Estadística (INE).
+
+## 2. Coherència entre censos i topologia
+
+Els mapes reconstruïts a mà contenien petits solapaments i forats entre
+polígons (imperceptibles a simple vista), i els límits d’un mateix
+municipi no sempre coincidien exactament entre mapes. Perquè les
+agregacions (províncies, partits judicials, districtes) no tinguin
+forats, el procés de construcció de les dades fa el següent:
+
+1.  **Neteja de cada mapa.** Les zones solapades es reparteixen
+    equitativament entre els municipis implicats (cada punt va al
+    municipi amb la frontera més propera) i els forats petits s’omplen
+    per expansió equitativa de les fronteres veïnes.
+2.  **Partició en unitats mínimes.** Totes les fronteres dels mapes de
+    1900, 1930, 1950 i 1970 i del SIANE de 2005 se superposen per
+    obtenir una partició única del territori en unitats mínimes. Cada
+    unitat té un municipi assignat a cada mapa.
+3.  **Censos sense mapa manual** (1910, 1920, 1940, 1960, 1981, 1991 i
+    2001). Cada unitat s’assigna a partir del mapa anterior i el
+    posterior, de la vigència dels municipis en el cens i de les
+    variacions municipals documentades al MINAP (*Variaciones de los
+    municipios de España desde 1842*), a les quals s’ha afegit el codi
+    INE. Per als censos posteriors a 1970 es manté el traçat del mapa de
+    1970 llevat que hi hagi un canvi documentat.
+4.  **Correccions manuals.** Alguns casos problemàtics especials s’han
+    resolt a mà (fitxers `data-raw/correccions_manuals.csv`,
+    `data-raw/parts_desconnectades.csv` i
+    `data-raw/manual/territoris_manuals.gpkg`).
+5.  **Simplificació.** La partició es simplifica preservant la topologia
+    (cada frontera compartida es simplifica una sola vegada, amb una
+    tolerància de 20 m), i els mapes de cada cens s’obtenen dissolent
+    les unitats per municipi. Algunes unitats es corregeixen perquè
+    també siguin vàlides en coordenades geogràfiques (desplaçant uns
+    metres vèrtexs gairebé coincidents, sempre a totes les unitats que
+    els comparteixen).
+
+Com que tots els mapes provenen de la mateixa partició, **no tenen
+forats ni solapaments** i qualsevol agregació és exacta.
+
+### Territoris no municipals (53xxx)
+
+Els condominis comunals o territoris mancomunats són unitats
+administratives que no són municipis. Es mantenen com a unitats pròpies
+als mapes municipals (`no_munic = 1`). En les agregacions:
+
+- **Províncies:** s’assignen a la província (SIANE 2005) dins la qual
+  cau el polígon.
+- **Partits judicials i districtes electorals:** s’assignen a la unitat
+  de la seva província amb què comparteixen més frontera.
+
+### Canàries
+
+Les coordenades són reals per defecte. Totes les funcions tenen l’opció
+`moveCAN = TRUE`, que desplaça les Canàries al costat de la península
+exactament com fa el paquet **mapSpain**. En aquests mapes convé
+dibuixar-hi la caixa que separa les illes, amb
+[`mapSpain::esp_get_can_box()`](https://ropenspain.github.io/mapSpain/reference/esp_get_can_box.html).
+
+## 3. Unitats superiors
+
+| Unitat | Censos / eleccions | Font |
+|----|----|----|
+| Províncies | 1900-2001 | Codi INE del municipi (2 primeres xifres) |
+| Partits judicials | 1900, 1910, 1920, 1930 | Censos de l’INE (variable PJ) i fonts secundàries |
+| Districtes a Corts (Restauració) | 1920 (municipis del cens de 1920) | [Congreso de los Diputados](https://ccuc.csuc.cat/permalink/34CSUC_NETWORK/ian09j/alma991020986739706706) |
+| Circumscripcions (II República) | 1931, 1933, 1936 (municipis del cens de 1930) | Censos de l’INE i fonts secundàries per determinar els municipis que pertanyien a les circumscripcions vinculades a grans ciutats; la resta pertanyien a la circumscripció provincial |
+
+Codis de les unitats: 2 xifres de província + 2 xifres d’unitat per
+ordre alfabètic dins la província (els partits judicials tenen el mateix
+codi en tots els censos). Melilla no estava assignada a cap districte a
+Corts el 1920.
+
+## 4. Fonts
+
+- **Límits municipals de referència:** SIANE (© Instituto Geográfico
+  Nacional, CC BY 4.0), divisió de 2005, a través del paquet d’R
+  **mapSpain**.
+- **Mapes municipals de 1900, 1930, 1950 i 1970:** reconstrucció pròpia
+  a partir de la font anterior (vegeu la secció 1).
+- **Dades dels censos (1842-2011):** censos de població de l’INE.
+- **Variacions municipals:** *Variaciones de los municipios de España
+  desde 1842* (Ministerio de Administraciones Públicas, MINAP).
+- **Districtes electorals a Corts de 1920:**
+  <https://ccuc.csuc.cat/permalink/34CSUC_NETWORK/ian09j/alma991020986739706706>
+- **Partits judicials i circumscripcions de la II República:**
+  informació dels censos de l’INE i altres fonts secundàries.
+
+## 5. Llicències i citació
+
+- **Codi del paquet:** llicència MIT.
+- **Dades** (geometries i taules `censos` i `unitats`): llicència
+  Creative Commons Reconeixement 4.0 Internacional (CC BY 4.0).
+
+Si feu servir el paquet o les dades, citeu-los
+(`citation("mapSpainHist")`):
+
+- Vall Prat, P. (2026). *mapSpainHist: Historical Municipal Boundaries
+  of Spain (1900-2001)*. Paquet d’R, versió 0.1.0.
+  <https://github.com/pauvallprat/mapSpainHist>
+- Vall Prat, P. (2026). *Historical municipal boundaries of Spain,
+  1900-2001* \[conjunt de dades\]. Zenodo.
+  <https://doi.org/10.5281/zenodo.23663208>

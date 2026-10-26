@@ -1,0 +1,23 @@
+pandoc: 3.8.3
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  articles/en/contact: en/contact.html
+  articles/ca/contacte: ca/contacte.html
+  articles/es/contacto: es/contacto.html
+  articles/es/funciones: es/funciones.html
+  articles/ca/funcions: ca/funcions.html
+  articles/en/functions: en/functions.html
+  articles/ca/introduccio: ca/introduccio.html
+  articles/es/introduccion: es/introduccion.html
+  articles/en/introduction: en/introduction.html
+  articles/en/methodology: en/methodology.html
+  articles/ca/metodologia: ca/metodologia.html
+  articles/es/metodologia: es/metodologia.html
+  articles/es/unidades: es/unidades.html
+  articles/ca/unitats: ca/unitats.html
+  articles/en/units: en/units.html
+last_built: 2026-10-26T12:08Z
+urls:
+  reference: https://pauvallprat.github.io/mapSpainHist/reference
+  article: https://pauvallprat.github.io/mapSpainHist/articles
