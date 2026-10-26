@@ -76,14 +76,11 @@ Si detecta un error en los mapas o en los datos, o tiene alguna sugerencia, use 
 
 ## Cómo citarlo
 
-Si utiliza el paquete o sus datos, cítelos. Puede obtener la referencia con:
+Si utiliza el paquete y/o sus datos, cítelos. Una forma orientativa de referenciarlos es la siguiente:
 
 ```r
 citation("mapSpainHist")
 ```
-
-- Vall Prat, P. (2026). *mapSpainHist: Historical Municipal Boundaries of Spain (1900-2001)*.
-  Paquete de R, versión 0.1.0. https://github.com/pauvallprat/mapSpainHist
 - Vall Prat, P. (2026). *Historical municipal boundaries of Spain, 1900-2001*
   [conjunto de datos]. Zenodo. https://doi.org/10.5281/zenodo.23663208
 
