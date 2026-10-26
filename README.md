@@ -91,8 +91,8 @@ citation("mapSpainHist")
 
 ## Licenses
 
-- **Code:** [MIT](LICENSE.md) license.
-- **Data** (geometries and the `censos` and `unitats` tables):
+- **R package** (code and the bundled `censos` and `unitats` tables): [MIT](LICENSE.md) license.
+- **Zenodo data deposit** (geometries, census tables and GeoPackage):
   [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
 The reference municipal boundaries derive from SIANE (© Instituto Geográfico Nacional, CC BY 4.0),

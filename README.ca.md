@@ -87,8 +87,8 @@ citation("mapSpainHist")
 
 ## Llicències
 
-- **Codi:** llicència [MIT](LICENSE.md).
-- **Dades** (geometries i taules `censos` i `unitats`): llicència
+- **Paquet d'R** (codi i taules incloses `censos` i `unitats`): llicència [MIT](LICENSE.md).
+- **Dipòsit de dades a Zenodo** (geometries, taules dels censos i GeoPackage): llicència
   [Creative Commons Reconeixement 4.0 Internacional (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.ca).
 
 Els límits municipals de referència deriven del SIANE (© Instituto Geográfico Nacional, CC BY 4.0), descarregats a partir de l'any més antic disponible al paquet `mapSpain`;

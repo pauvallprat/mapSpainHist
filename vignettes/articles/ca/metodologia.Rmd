@@ -109,9 +109,9 @@ província (els partits judicials tenen el mateix codi en tots els censos). Meli
 
 ## 5. Llicències i citació
 
-- **Codi del paquet:** llicència MIT.
-- **Dades** (geometries i taules `censos` i `unitats`): llicència Creative Commons Reconeixement 4.0
-  Internacional (CC BY 4.0).
+- **Paquet d'R** (codi i taules incloses `censos` i `unitats`): llicència MIT.
+- **Dipòsit de dades a Zenodo** (geometries, taules dels censos i GeoPackage): llicència
+  Creative Commons Reconeixement 4.0 Internacional (CC BY 4.0).
 
 Si feu servir el paquet i/o les dades, citeu-ho. Podeu fer servir, orientativament, la següent referència (`citation("mapSpainHist")`):
 

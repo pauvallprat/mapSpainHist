@@ -111,9 +111,9 @@ estaba asignada a ningún distrito a Cortes en 1920.
 
 ## 5. Licencias y citación
 
-- **Código del paquete:** licencia MIT.
-- **Datos** (geometrías y tablas `censos` y `unitats`): licencia Creative Commons Atribución 4.0
-  Internacional (CC BY 4.0).
+- **Paquete de R** (código y tablas incluidas `censos` y `unitats`): licencia MIT.
+- **Depósito de datos en Zenodo** (geometrías, tablas de los censos y GeoPackage): licencia
+  Creative Commons Atribución 4.0 Internacional (CC BY 4.0).
 
 Si utiliza el paquete y/o sus datos, cítelos. Una forma orientativa de referenciarlos es la siguiente (`citation("mapSpainHist")`):
 
