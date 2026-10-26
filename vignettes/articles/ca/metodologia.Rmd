@@ -113,9 +113,7 @@ província (els partits judicials tenen el mateix codi en tots els censos). Meli
 - **Dades** (geometries i taules `censos` i `unitats`): llicència Creative Commons Reconeixement 4.0
   Internacional (CC BY 4.0).
 
-Si feu servir el paquet o les dades, citeu-los (`citation("mapSpainHist")`):
+Si feu servir el paquet i/o les dades, citeu-ho. Podeu fer servir, orientativament, la següent referència (`citation("mapSpainHist")`):
 
-- Vall Prat, P. (2026). *mapSpainHist: Historical Municipal Boundaries of Spain (1900-2001)*.
-  Paquet d'R, versió 0.1.0. https://github.com/pauvallprat/mapSpainHist
 - Vall Prat, P. (2026). *Historical municipal boundaries of Spain, 1900-2001*
   [conjunt de dades]. Zenodo. https://doi.org/10.5281/zenodo.23663208

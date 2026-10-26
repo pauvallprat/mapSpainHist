@@ -20,6 +20,18 @@ keywords:
   - census
   - electoral districts
   - R
+preferred-citation:
+  type: dataset
+  title: "Historical municipal boundaries of Spain, 1900-2001"
+  authors:
+    - family-names: "Vall Prat"
+      given-names: "Pau"
+      orcid: "https://orcid.org/0000-0003-1418-7833"
+  doi: 10.5281/zenodo.23663208
+  publisher:
+    name: Zenodo
+  year: 2026
+  license: CC-BY-4.0
 references:
   - type: dataset
     title: "Historical municipal boundaries of Spain, 1900-2001"

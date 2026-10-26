@@ -85,6 +85,7 @@ If you use the package and/or its data, please cite them. You can get the refere
 ```r
 citation("mapSpainHist")
 ```
+
 - Vall Prat, P. (2026). *Historical municipal boundaries of Spain, 1900-2001*
   [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23663208
 
