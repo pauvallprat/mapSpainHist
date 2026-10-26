@@ -1,8 +1,9 @@
 # mapSpainHist
 
 **English** ·
-[Castellano](https://pauvallprat.github.io/mapSpainHist/README.es.md) ·
-[Català](https://pauvallprat.github.io/mapSpainHist/README.ca.md)
+[Castellano](https://github.com/pauvallprat/mapSpainHist/blob/main/README.es.md)
+·
+[Català](https://github.com/pauvallprat/mapSpainHist/blob/main/README.ca.md)
 
 **mapSpainHist** is an R package with the **municipal boundaries of
 Spain for each population census between 1900 and 2001** (1900, 1910,
@@ -110,7 +111,8 @@ citation("mapSpainHist")
 ## Licenses
 
 - **R package** (code and the bundled `censos` and `unitats` tables):
-  [MIT](https://pauvallprat.github.io/mapSpainHist/LICENSE.md) license.
+  [MIT](https://github.com/pauvallprat/mapSpainHist/blob/main/LICENSE.md)
+  license.
 - **Zenodo data deposit** (geometries, census tables and GeoPackage):
   [Creative Commons Attribution 4.0 International (CC BY
   4.0)](https://creativecommons.org/licenses/by/4.0/).
