@@ -16,33 +16,33 @@ esp_get_munic_hist(
 )
 }
 \arguments{
-\item{year}{Census year, one of [mhist_census_years()].}
+\item{year}{Census year, one of \code{\link[=mhist_census_years]{mhist_census_years()}}.}
 
 \item{epsg}{EPSG code of the output (default 4258, ETRS89, as in mapSpain).}
 
-\item{moveCAN}{Position of the Canary Islands. `FALSE` (default) keeps their
-real position. `TRUE` moves them next to the Peninsula exactly as
-`mapSpain::esp_move_can()` does. A numeric vector `c(lon, lat)` adds an extra
+\item{moveCAN}{Position of the Canary Islands. \code{FALSE} (default) keeps their
+real position. \code{TRUE} moves them next to the Peninsula exactly as
+\code{mapSpain::esp_move_can()} does. A numeric vector \code{c(lon, lat)} adds an extra
 displacement, also as in mapSpain.
 When the islands are moved, draw the box that separates them with
-`mapSpain::esp_get_can_box()`, which matches this displacement.}
+\code{mapSpain::esp_get_can_box()}, which matches this displacement.}
 
-\item{include_nonmunicipal}{If `FALSE`, drops the non-municipal territories
-(codes 53xxx, `no_munic == 1`).}
+\item{include_nonmunicipal}{If \code{FALSE}, drops the non-municipal territories
+(codes 53xxx, \code{no_munic == 1}).}
 
-\item{census_data}{If `TRUE` (default), adds the census figures of `year`
-from [censos] (municipality name, province, households, population...).
-If `FALSE`, returns only `cod_ine`, `no_munic` and the geometry.}
+\item{census_data}{If \code{TRUE} (default), adds the census figures of \code{year}
+from \link{censos} (municipality name, province, households, population...).
+If \code{FALSE}, returns only \code{cod_ine}, \code{no_munic} and the geometry.}
 
-\item{cache_dir}{Cache directory. If `NULL`, [mhist_cache_dir()] is used.}
+\item{cache_dir}{Cache directory. If \code{NULL}, \code{\link[=mhist_cache_dir]{mhist_cache_dir()}} is used.}
 
-\item{update_cache}{If `TRUE`, downloads the geometries again.}
+\item{update_cache}{If \code{TRUE}, downloads the geometries again.}
 
-\item{verbose}{If `TRUE`, shows download messages.}
+\item{verbose}{If \code{TRUE}, shows download messages.}
 }
 \value{
-An `sf` object with one row per municipality, or `NULL` (with a
-  message) if the geometries cannot be downloaded.
+An \code{sf} object with one row per municipality, or \code{NULL} (with a
+message) if the geometries cannot be downloaded.
 }
 \description{
 Returns the municipalities in force at the given census. All census maps come
@@ -52,11 +52,11 @@ slivers.
 }
 \details{
 The geometries are downloaded from Zenodo the first time and stored in a cache
-directory (see [mhist_cache_dir()]).
+directory (see \code{\link[=mhist_cache_dir]{mhist_cache_dir()}}).
 }
 \section{Warning}{
  the boundaries of most historical municipalities are an
-  approximate reconstruction. See [mapSpainHist-package].
+approximate reconstruction. See \link{mapSpainHist-package}.
 }
 
 \examples{

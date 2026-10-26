@@ -15,35 +15,35 @@ esp_get_prov_hist(
 )
 }
 \arguments{
-\item{year}{Census year, one of [mhist_census_years()].}
+\item{year}{Census year, one of \code{\link[=mhist_census_years]{mhist_census_years()}}.}
 
 \item{epsg}{EPSG code of the output (default 4258, ETRS89, as in mapSpain).}
 
-\item{moveCAN}{Position of the Canary Islands. `FALSE` (default) keeps their
-real position. `TRUE` moves them next to the Peninsula exactly as
-`mapSpain::esp_move_can()` does. A numeric vector `c(lon, lat)` adds an extra
+\item{moveCAN}{Position of the Canary Islands. \code{FALSE} (default) keeps their
+real position. \code{TRUE} moves them next to the Peninsula exactly as
+\code{mapSpain::esp_move_can()} does. A numeric vector \code{c(lon, lat)} adds an extra
 displacement, also as in mapSpain.
 When the islands are moved, draw the box that separates them with
-`mapSpain::esp_get_can_box()`, which matches this displacement.}
+\code{mapSpain::esp_get_can_box()}, which matches this displacement.}
 
-\item{census_data}{If `TRUE` (default), adds the number of municipalities and
-the sum of the census figures (`hogares`, `pder`, `phec`, `pob_serie`) of the
+\item{census_data}{If \code{TRUE} (default), adds the number of municipalities and
+the sum of the census figures (\code{hogares}, \code{pder}, \code{phec}, \code{pob_serie}) of the
 municipalities of each unit.}
 
-\item{cache_dir}{Cache directory. If `NULL`, [mhist_cache_dir()] is used.}
+\item{cache_dir}{Cache directory. If \code{NULL}, \code{\link[=mhist_cache_dir]{mhist_cache_dir()}} is used.}
 
-\item{update_cache}{If `TRUE`, downloads the geometries again.}
+\item{update_cache}{If \code{TRUE}, downloads the geometries again.}
 
-\item{verbose}{If `TRUE`, shows download messages.}
+\item{verbose}{If \code{TRUE}, shows download messages.}
 }
 \value{
-An `sf` object with columns `cod_unit` (2-digit INE province code),
-  `nom`, `n_mun` and, optionally, the census figures; `NULL` (with a message)
-  if the geometries cannot be downloaded.
+An \code{sf} object with columns \code{cod_unit} (2-digit INE province code),
+\code{nom}, \code{n_mun} and, optionally, the census figures; \code{NULL} (with a message)
+if the geometries cannot be downloaded.
 }
 \description{
 Provinces built by dissolving the municipalities of the census, so they nest
-exactly with [esp_get_munic_hist()]. Non-municipal territories (53xxx) are
+exactly with \code{\link[=esp_get_munic_hist]{esp_get_munic_hist()}}. Non-municipal territories (53xxx) are
 assigned to the province that contains them.
 }
 \examples{

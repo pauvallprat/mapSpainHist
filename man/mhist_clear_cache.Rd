@@ -7,10 +7,10 @@
 mhist_clear_cache(cache_dir = NULL)
 }
 \arguments{
-\item{cache_dir}{Path of the cache directory. If `NULL`, returns the current one.}
+\item{cache_dir}{Path of the cache directory. If \code{NULL}, returns the current one.}
 }
 \value{
-`TRUE` invisibly if a file was deleted, `FALSE` otherwise.
+\code{TRUE} invisibly if a file was deleted, \code{FALSE} otherwise.
 }
 \description{
 Deletes the downloaded geometries, which will be downloaded again the next time

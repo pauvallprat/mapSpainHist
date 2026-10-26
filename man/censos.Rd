@@ -7,18 +7,18 @@
 \format{
 A data frame with columns:
 \describe{
-  \item{cod_ine}{INE municipality code (5 characters; 6 for municipalities
-    extinct before 1900).}
-  \item{censo}{Census year.}
-  \item{municipio}{Municipality name.}
-  \item{prov}{Province.}
-  \item{cod_ccaa, ccaa}{Autonomous community code and name.}
-  \item{PJ}{Judicial district (partido judicial).}
-  \item{hogares}{Households.}
-  \item{pder}{De jure population.}
-  \item{phec}{De facto population.}
-  \item{pob_serie}{Continuous population series.}
-  \item{no_munic}{1 for non-municipal territories (53xxx), 0 otherwise.}
+\item{cod_ine}{INE municipality code (5 characters; 6 for municipalities
+extinct before 1900).}
+\item{censo}{Census year.}
+\item{municipio}{Municipality name.}
+\item{prov}{Province.}
+\item{cod_ccaa, ccaa}{Autonomous community code and name.}
+\item{PJ}{Judicial district (partido judicial).}
+\item{hogares}{Households.}
+\item{pder}{De jure population.}
+\item{phec}{De facto population.}
+\item{pob_serie}{Continuous population series.}
+\item{no_munic}{1 for non-municipal territories (53xxx), 0 otherwise.}
 }
 }
 \usage{
@@ -26,8 +26,8 @@ censos
 }
 \description{
 Population census data for every municipality and census edition, from
-`Municipis_Espanya_1842-2011.xlsx`. A municipality is in force at a census when
-`hogares` is not missing. Rows with `no_munic == 1` are the non-municipal
+\verb{Municipis_Espanya_1842-2011.xlsx}. A municipality is in force at a census when
+\code{hogares} is not missing. Rows with \code{no_munic == 1} are the non-municipal
 territories (codes 53xxx) present in the maps, which have no census figures.
 }
 \keyword{datasets}

@@ -10,16 +10,16 @@ mhist_cache_dir(cache_dir = NULL)
 mhist_set_cache_dir(cache_dir)
 }
 \arguments{
-\item{cache_dir}{Path of the cache directory. If `NULL`, returns the current one.}
+\item{cache_dir}{Path of the cache directory. If \code{NULL}, returns the current one.}
 }
 \value{
-The path of the cache directory (invisibly for `mhist_set_cache_dir()`).
+The path of the cache directory (invisibly for \code{mhist_set_cache_dir()}).
 }
 \description{
 The geometries are downloaded from Zenodo the first time they are needed and
 stored in a cache directory. By default it is the user cache directory given by
-[tools::R_user_dir()]. It can be changed for the session with
-`mhist_set_cache_dir()` or with the `cache_dir` argument of the `esp_get_*_hist()`
+\code{\link[tools:userdir]{tools::R_user_dir()}}. It can be changed for the session with
+\code{mhist_set_cache_dir()} or with the \code{cache_dir} argument of the \verb{esp_get_*_hist()}
 functions.
 }
 \examples{
