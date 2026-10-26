@@ -1,0 +1,55 @@
+url: https://pauvallprat.github.io/mapSpainHist/
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#8c3b1e"
+
+home:
+  title: "mapSpainHist: Historical Municipal Boundaries of Spain (1900-2001)"
+
+navbar:
+  structure:
+    left: [reference, catala, news]
+    right: [search, github]
+  components:
+    catala:
+      text: Català
+      menu:
+        - text: Introducció
+          href: articles/ca/introduccio.html
+        - text: Unitats superiors i agregació de dades
+          href: articles/ca/unitats.html
+        - text: Guia de funcions i dades
+          href: articles/ca/funcions.html
+        - text: Metodologia, fonts i advertiments
+          href: articles/ca/metodologia.html
+
+reference:
+  - title: Maps
+    contents:
+      - esp_get_munic_hist
+      - esp_get_prov_hist
+      - esp_get_pj_hist
+      - esp_get_circ_hist
+  - title: Data
+    contents:
+      - censos
+      - unitats
+  - title: Utilities
+    contents:
+      - mhist_census_years
+      - mhist_cache_dir
+      - mhist_clear_cache
+  - title: Package
+    contents:
+      - mapSpainHist-package
+
+articles:
+  - title: Català
+    navbar: ~
+    contents:
+      - articles/ca/introduccio
+      - articles/ca/unitats
+      - articles/ca/funcions
+      - articles/ca/metodologia

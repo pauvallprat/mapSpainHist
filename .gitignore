@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+docs/
+inst/doc
+data-raw/intermediate/
+data-raw/cache/
+data-raw/logs/
+output/
+*.properties
+Rplots.pdf

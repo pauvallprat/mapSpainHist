@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this package or its data, please cite it as below."
+type: software
+title: "mapSpainHist: Historical Municipal Boundaries of Spain (1900-2001)"
+version: 0.1.0
+date-released: 2026-10-26
+license: MIT
+repository-code: "https://github.com/pauvallprat/mapSpainHist"
+url: "https://pauvallprat.github.io/mapSpainHist/"
+doi: ZENODO_DOI_SOFTWARE
+authors:
+  - family-names: "Vall Prat"
+    given-names: "Pau"
+    email: pau.vall@ub.edu
+    affiliation: "Universitat de Barcelona"
+    orcid: "https://orcid.org/0000-0003-1418-7833"
+keywords:
+  - Spain
+  - historical GIS
+  - municipalities
+  - census
+  - electoral districts
+  - R
+references:
+  - type: dataset
+    title: "Historical municipal boundaries of Spain, 1900-2001 (census editions)"
+    authors:
+      - family-names: "Vall Prat"
+        given-names: "Pau"
+        orcid: "https://orcid.org/0000-0003-1418-7833"
+    doi: ZENODO_DOI_DATA
+    license: CC-BY-4.0

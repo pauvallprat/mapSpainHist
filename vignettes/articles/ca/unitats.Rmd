@@ -1,0 +1,107 @@
+---
+title: "Unitats superiors i agregació de dades"
+description: "Províncies, partits judicials i districtes electorals històrics, i com agregar-hi dades municipals."
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>", fig.width = 8, fig.height = 6, dpi = 110,
+  message = FALSE, warning = FALSE, dev.args = list(bg = "white"),
+  eval = !is.null(suppressMessages(mapSpainHist:::mhist_geometry_file()))
+)
+```
+
+```{r}
+library(mapSpainHist)
+library(ggplot2)
+```
+
+A més dels municipis, el paquet inclou unitats territorials superiors construïdes **fusionant els
+municipis de cada cens**. Per això encaixen exactament amb els mapes municipals: cada municipi
+pertany a una sola unitat i les unitats no tenen forats ni solapaments entre elles.
+
+| Funció | Unitat | Anys | Municipis de referència |
+|---|---|---|---|
+| `esp_get_prov_hist()` | Províncies | tots els censos (1900-2001) | els del mateix cens |
+| `esp_get_pj_hist()` | Partits judicials | 1900, 1910, 1920, 1930 | els del mateix cens |
+| `esp_get_circ_hist()` | Districtes a Corts de la Restauració | 1920 | cens de 1920 |
+| `esp_get_circ_hist()` | Circumscripcions de la II República | 1931, 1933, 1936 | cens de 1930 |
+
+Totes les funcions retornen el codi de la unitat (`cod_unit`), el nom (`nom`), el nombre de
+municipis (`n_mun`) i, si `census_data = TRUE` (opció per defecte), la suma de les dades del cens
+dels seus municipis (`hogares`, `pder`, `phec`, `pob_serie`).
+
+## Codis de les unitats
+
+- **Províncies:** codi INE de la província (2 xifres).
+- **Partits judicials i districtes electorals:** 4 xifres. Les dues primeres són la província i
+  les dues següents numeren les unitats per ordre alfabètic dins la província. Els partits
+  judicials tenen el mateix codi en tots els censos.
+
+## Partits judicials
+
+```{r pj-1910, fig.alt = "Mapa dels partits judicials d'Espanya el 1910 acolorits segons la població"}
+pj <- esp_get_pj_hist(1910, moveCAN = TRUE)
+head(sf::st_drop_geometry(pj))
+
+ggplot(pj) +
+  geom_sf(aes(fill = pder / 1000), colour = "white", linewidth = 0.1) +
+  scale_fill_viridis_c(option = "cividis", trans = "log10") +
+  labs(title = "Població de dret per partit judicial, 1910", fill = "Milers\nd'habitants") +
+  theme_void()
+```
+
+## Districtes electorals
+
+Els districtes a Corts de 1920 són els de la Restauració. Les circumscripcions de 1931, 1933 i 1936
+són les de les eleccions de la II República; en algunes províncies les capitals formen una
+circumscripció pròpia.
+
+```{r districtes, fig.height = 4.5, fig.alt = "Mapes dels districtes a Corts de 1920 i de les circumscripcions de 1933"}
+d1920 <- esp_get_circ_hist(1920, moveCAN = TRUE, census_data = FALSE)
+d1933 <- esp_get_circ_hist(1933, moveCAN = TRUE, census_data = FALSE)
+c(districtes_1920 = nrow(d1920), circumscripcions_1933 = nrow(d1933))
+
+d1920$tipus <- "Districtes a Corts, 1920"
+d1933$tipus <- "Circumscripcions, 1933"
+ggplot(rbind(d1920, d1933)) +
+  geom_sf(fill = "grey95", colour = "grey20", linewidth = 0.15) +
+  facet_wrap(~tipus) +
+  theme_void()
+```
+
+## Agregar dades pròpies
+
+La taula `unitats` indica a quina unitat pertany cada municipi (`cod_ine`) per a cada tipus
+(`prov`, `pj`, `circ`) i any. Permet agregar qualsevol dada municipal. Per exemple, calculem la
+proporció de població que vivia en municipis de més de 10.000 habitants a cada circumscripció de
+1933 (fent servir el cens de 1930):
+
+```{r agregacio, fig.alt = "Mapa de les circumscripcions de 1933 acolorides segons la proporció de població en municipis de més de 10.000 habitants"}
+eq <- unitats[unitats$tipus == "circ" & unitats$any == 1933, ]
+c30 <- censos[censos$censo == 1930 & !is.na(censos$hogares), c("cod_ine", "pder")]
+d <- merge(eq, c30, by = "cod_ine")
+d$urbana <- ifelse(d$pder > 10000, d$pder, 0)
+
+ag <- aggregate(cbind(urbana, pder) ~ cod_unit, data = d, FUN = sum)
+ag$prop_urbana <- ag$urbana / ag$pder
+
+circ <- merge(esp_get_circ_hist(1933, moveCAN = TRUE), ag[, c("cod_unit", "prop_urbana")],
+              by = "cod_unit")
+ggplot(circ) +
+  geom_sf(aes(fill = prop_urbana), colour = "white", linewidth = 0.2) +
+  scale_fill_viridis_c(labels = scales::percent) +
+  labs(title = "Població en municipis de més de 10.000 habitants, 1930",
+       subtitle = "Circumscripcions electorals de 1933", fill = NULL) +
+  theme_void()
+```
+
+## Territoris no municipals
+
+Els territoris no municipals (codis 53xxx) s'assignen:
+
+- a la **província** dins la qual cau el polígon (segons les províncies del SIANE);
+- al **partit judicial** o **districte electoral** de la seva província amb què comparteixen més
+  frontera.
+
+Melilla no tenia districte a Corts el 1920 i no apareix en aquest mapa.

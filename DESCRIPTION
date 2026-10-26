@@ -1,0 +1,38 @@
+Package: mapSpainHist
+Type: Package
+Title: Historical Municipal Boundaries of Spain (1900-2001)
+Version: 0.1.0
+Authors@R:
+    person("Pau", "Vall Prat", , "pau.vall@ub.edu", role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "0000-0003-1418-7833"))
+Description: Municipal boundaries of Spain for each population census between
+    1900 and 2001, together with provinces, judicial districts and electoral
+    districts (Cortes of the Restoration in 1920 and constituencies of the
+    Second Republic in 1931, 1933 and 1936) built from them, and the census
+    figures of every municipality from 1842 to 2011. All maps derive from a
+    single partition of the territory, so they have no gaps or overlaps and
+    can be aggregated consistently. Boundaries of historical municipalities
+    are an approximate reconstruction. Geometries are downloaded from 'Zenodo'
+    and cached locally.
+License: MIT + file LICENSE
+URL: https://github.com/pauvallprat/mapSpainHist,
+    https://pauvallprat.github.io/mapSpainHist/
+BugReports: https://github.com/pauvallprat/mapSpainHist/issues
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+Depends:
+    R (>= 4.1)
+Imports:
+    sf,
+    tools,
+    utils
+Suggests:
+    ggplot2,
+    knitr,
+    rmarkdown,
+    s2,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Config/Needs/website: pkgdown, scales
+RoxygenNote: 7.3.3

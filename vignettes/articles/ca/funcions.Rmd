@@ -1,0 +1,82 @@
+---
+title: "Guia de funcions i dades"
+description: "Descripció en català de totes les funcions, arguments i taules del paquet."
+---
+
+Aquesta guia resumeix en català el contingut de l'ajuda del paquet (que, per requisit de CRAN, és en
+anglès). Per a la referència completa, vegeu la secció *Reference* de la web o `?nom_funció` a R.
+
+## Funcions de mapes
+
+### `esp_get_munic_hist()`
+
+Municipis vigents en un cens.
+
+| Argument | Descripció |
+|---|---|
+| `year` | Any del cens: 1900, 1910, 1920, 1930, 1940, 1950, 1960, 1970, 1981, 1991 o 2001. |
+| `epsg` | Sistema de referència de sortida. Per defecte, 4258 (ETRS89), com mapSpain. |
+| `moveCAN` | Posició de les Canàries. `FALSE` (per defecte): posició real. `TRUE`: al costat de la península, igual que `mapSpain::esp_move_can()`. Un vector `c(lon, lat)` afegeix un desplaçament addicional. |
+| `include_nonmunicipal` | Si és `FALSE`, s'exclouen els territoris no municipals (codis 53xxx). |
+| `census_data` | Si és `TRUE` (per defecte), s'hi afegeixen les dades del cens (taula `censos`). Si és `FALSE`, només es retorna `cod_ine`, `no_munic` i la geometria. |
+| `cache_dir` | Carpeta de la memòria cau. Per defecte, la de `mhist_cache_dir()`. |
+| `update_cache` | Si és `TRUE`, torna a descarregar les geometries. |
+| `verbose` | Si és `TRUE`, mostra missatges de la descàrrega. |
+
+Retorna un objecte `sf` amb una fila per municipi, o `NULL` (amb un missatge) si no es poden
+descarregar les geometries.
+
+### `esp_get_prov_hist()`, `esp_get_pj_hist()`, `esp_get_circ_hist()`
+
+Províncies (tots els censos), partits judicials (1900, 1910, 1920 i 1930) i districtes electorals
+(1920: districtes a Corts; 1931, 1933 i 1936: circumscripcions de la II República). Tenen els
+arguments `year`, `epsg`, `moveCAN`, `cache_dir`, `update_cache` i `verbose` com
+`esp_get_munic_hist()`, i:
+
+| Argument | Descripció |
+|---|---|
+| `census_data` | Si és `TRUE` (per defecte), s'hi afegeix la suma de les dades del cens dels municipis de cada unitat. Per als districtes de 1920 es fa servir el cens de 1920; per a les circumscripcions de la II República, el de 1930. |
+
+Retornen un objecte `sf` amb les columnes `cod_unit`, `nom`, `n_mun` (nombre de municipis) i, si
+escau, `hogares`, `pder`, `phec` i `pob_serie`.
+
+## Funcions auxiliars
+
+| Funció | Descripció |
+|---|---|
+| `mhist_census_years()` | Anys de cens disponibles. |
+| `mhist_cache_dir()` | Carpeta de la memòria cau on es desen les geometries. |
+| `mhist_set_cache_dir()` | Canvia la carpeta de la memòria cau per a la sessió. |
+| `mhist_clear_cache()` | Esborra les geometries descarregades. |
+
+## Taules de dades
+
+### `censos`
+
+Dades dels censos de població de cada municipi entre 1842 i 2011. Un municipi és vigent en un
+cens quan té dades de llars (`hogares`).
+
+| Columna | Descripció |
+|---|---|
+| `cod_ine` | Codi INE del municipi (5 xifres; 6 per als municipis desapareguts abans de 1900). |
+| `censo` | Any del cens. |
+| `municipio` | Nom del municipi. |
+| `prov` | Província. |
+| `cod_ccaa`, `ccaa` | Codi i nom de la comunitat autònoma. |
+| `PJ` | Partit judicial (disponible de 1897 a 1930). |
+| `hogares` | Llars. |
+| `pder` | Població de dret. |
+| `phec` | Població de fet. |
+| `pob_serie` | Sèrie de població contínua. |
+| `no_munic` | 1 per als territoris no municipals (53xxx), 0 per a la resta. |
+
+### `unitats`
+
+Equivalència entre municipis i unitats superiors, útil per agregar dades municipals.
+
+| Columna | Descripció |
+|---|---|
+| `tipus` | `"prov"` (província), `"pj"` (partit judicial) o `"circ"` (districte electoral). |
+| `any` | Any del cens (províncies i partits judicials) o de les eleccions (1920, 1931, 1933, 1936). |
+| `cod_ine` | Codi INE del municipi. |
+| `cod_unit` | Codi de la unitat (2 xifres per a les províncies, 4 per a la resta). |

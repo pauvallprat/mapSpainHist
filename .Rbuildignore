@@ -1,0 +1,16 @@
+^data-raw$
+^output$
+^LICENSE\.md$
+^README\..*\.md$
+^NEWS\..*\.md$
+^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^vignettes/articles$
+^CITATION\.cff$
+^\.zenodo\.json$
+^cran-comments\.md$
+^.*\.Rproj$
+^\.Rproj\.user$
+^man-roxygen$
