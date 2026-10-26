@@ -95,17 +95,14 @@ GitHub.
 
 ## How to cite
 
-If you use the package or its data, please cite them. You can get the
-reference with:
+If you use the package and/or its data, please cite them. You can get
+the reference with:
 
 ``` r
 
 citation("mapSpainHist")
 ```
 
-- Vall Prat, P. (2026). *mapSpainHist: Historical Municipal Boundaries
-  of Spain (1900-2001)*. R package version 0.1.0.
-  <https://github.com/pauvallprat/mapSpainHist>
 - Vall Prat, P. (2026). *Historical municipal boundaries of Spain,
   1900-2001* \[Data set\]. Zenodo.
   <https://doi.org/10.5281/zenodo.23663208>
