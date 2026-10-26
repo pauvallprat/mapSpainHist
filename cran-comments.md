@@ -9,7 +9,6 @@
 * Local: Windows 11, R 4.5.1 (`R CMD check --as-cran`, including `--run-donttest`).
 * GitHub Actions: windows-latest (R release), macos-latest (R release),
   ubuntu-latest (R devel, release and oldrel-1).
-* win-builder: R-devel and R-release.
 * macOS builder: R-release.
 
 ## Notes for CRAN
