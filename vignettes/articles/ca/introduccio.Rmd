@@ -55,7 +55,8 @@ tenen dades del cens; es poden excloure amb `include_nonmunicipal = FALSE`.
 ## Un mapa de població
 
 Representem la població de dret de cada municipi el 1930. Amb `moveCAN = TRUE` les Canàries
-es col·loquen al costat de la península, com fa el paquet **mapSpain**.
+es col·loquen al costat de la península, com fa el paquet **mapSpain**. En aquests casos convé
+dibuixar-hi també la caixa que les separa, amb `mapSpain::esp_get_can_box()`.
 
 ```{r mapa-1930, fig.alt = "Mapa dels municipis d'Espanya el 1930 acolorits segons la població de dret"}
 m1930 <- esp_get_munic_hist(1930, moveCAN = TRUE)
@@ -67,6 +68,7 @@ m1930$poblacio <- cut(
 ggplot(m1930) +
   geom_sf(aes(fill = poblacio), colour = NA) +
   scale_fill_viridis_d(option = "magma", direction = -1, na.value = "grey85") +
+  geom_sf(data = mapSpain::esp_get_can_box(), colour = "grey50") +
   labs(title = "Població de dret per municipi, 1930", fill = "Habitants") +
   theme_void()
 ```
@@ -84,7 +86,7 @@ table(vig$censo)
 
 La forta reducció dels anys 1960 i 1970 correspon a les fusions de municipis d'aquells anys.
 Com que cada mapa conté exactament els municipis vigents en el seu cens, es poden seguir aquests
-canvis sobre el territori. Per exemple, Valdetórtola (Conca) es va crear als anys 70 amb diversos
+canvis sobre el territori. Per exemple, Valdetórtola (Cuenca) es va crear als anys 70 amb diversos
 municipis i es va dissoldre als anys 90:
 
 ```{r valdetortola, fig.height = 3.6, fig.alt = "Tres mapes (1970, 1981 i 1991) de la zona de Valdetórtola, a Conca, que només existeix el 1981"}

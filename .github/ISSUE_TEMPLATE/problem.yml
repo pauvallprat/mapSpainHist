@@ -1,0 +1,21 @@
+name: "Problem / Problema"
+description: "Report an error in the maps, the data or the code / Notificar un error en los mapas, los datos o el código / Notificar un error als mapes, les dades o el codi"
+labels: ["problem"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: "Census, municipality or unit / Censo, municipio o unidad / Cens, municipi o unitat"
+      placeholder: "e.g. 1930, Los Altos (09014)"
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description / Descripción / Descripció"
+      description: "What is wrong and, if you know it, what would be correct (with sources if possible)."
+    validations:
+      required: true
+  - type: textarea
+    id: code
+    attributes:
+      label: "R code to reproduce it (optional) / Código R (opcional) / Codi R (opcional)"
+      render: r

@@ -47,6 +47,7 @@ head(sf::st_drop_geometry(pj))
 ggplot(pj) +
   geom_sf(aes(fill = pder / 1000), colour = "white", linewidth = 0.1) +
   scale_fill_viridis_c(option = "cividis", trans = "log10") +
+  geom_sf(data = mapSpain::esp_get_can_box(), colour = "grey50") +
   labs(title = "Població de dret per partit judicial, 1910", fill = "Milers\nd'habitants") +
   theme_void()
 ```
@@ -66,6 +67,7 @@ d1920$tipus <- "Districtes a Corts, 1920"
 d1933$tipus <- "Circumscripcions, 1933"
 ggplot(rbind(d1920, d1933)) +
   geom_sf(fill = "grey95", colour = "grey20", linewidth = 0.15) +
+  geom_sf(data = mapSpain::esp_get_can_box(), colour = "grey50") +
   facet_wrap(~tipus) +
   theme_void()
 ```
@@ -91,6 +93,7 @@ circ <- merge(esp_get_circ_hist(1933, moveCAN = TRUE), ag[, c("cod_unit", "prop_
 ggplot(circ) +
   geom_sf(aes(fill = prop_urbana), colour = "white", linewidth = 0.2) +
   scale_fill_viridis_c(labels = scales::percent) +
+  geom_sf(data = mapSpain::esp_get_can_box(), colour = "grey50") +
   labs(title = "Població en municipis de més de 10.000 habitants, 1930",
        subtitle = "Circumscripcions electorals de 1933", fill = NULL) +
   theme_void()

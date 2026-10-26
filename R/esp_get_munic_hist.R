@@ -27,6 +27,8 @@ mhist_census_years <- function() {
 #'   real position. `TRUE` moves them next to the Peninsula exactly as
 #'   `mapSpain::esp_move_can()` does. A numeric vector `c(lon, lat)` adds an extra
 #'   displacement, also as in mapSpain.
+#'   When the islands are moved, draw the box that separates them with
+#'   `mapSpain::esp_get_can_box()`, which matches this displacement.
 #' @param include_nonmunicipal If `FALSE`, drops the non-municipal territories
 #'   (codes 53xxx, `no_munic == 1`).
 #' @param census_data If `TRUE` (default), adds the census figures of `year`
@@ -44,6 +46,10 @@ mhist_census_years <- function() {
 #' m1930 <- esp_get_munic_hist(1930, cache_dir = tempdir())
 #' m1930_can <- esp_get_munic_hist(1930, moveCAN = TRUE, cache_dir = tempdir())
 #' if (!is.null(m1930)) plot(sf::st_geometry(m1930))
+#' if (!is.null(m1930_can) && requireNamespace("mapSpain", quietly = TRUE)) {
+#'   plot(sf::st_geometry(m1930_can))
+#'   plot(sf::st_geometry(mapSpain::esp_get_can_box()), add = TRUE)
+#' }
 #' }
 esp_get_munic_hist <- function(year, epsg = 4258, moveCAN = FALSE,
                                include_nonmunicipal = TRUE, census_data = TRUE,

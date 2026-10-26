@@ -1,0 +1,63 @@
+---
+title: "Problemes i suggeriments"
+description: "Com notificar errors o fer suggeriments sobre els mapes i les dades."
+---
+
+Si detecteu algun error als mapes o a les dades (un municipi mal situat, un límit incorrecte, un codi equivocat...) o voleu fer algun suggeriment, us agrairé que me'l feu arribar. Les vostres aportacions ajuden a millorar el paquet.
+
+## Formulari
+
+Ompliu el formulari i premeu **Envia**: s'obrirà el vostre programa de correu amb el missatge preparat, adreçat a [pau.vall@ub.edu](mailto:pau.vall@ub.edu). Només cal que l'envieu.
+
+```{=html}
+<form id="mhist-form" class="mhist-form" onsubmit="return mhistSend(event)">
+  <div class="mb-3">
+    <label class="form-label" for="mf-type">Tipus</label>
+    <select class="form-select" id="mf-type">
+      <option>Problema</option>
+      <option>Suggeriment</option>
+      <option>Consulta</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="mf-name">Nom i afiliació (opcional)</label>
+    <input class="form-control" type="text" id="mf-name">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="mf-where">Cens, municipi o unitat afectats (opcional)</label>
+    <input class="form-control" type="text" id="mf-where" placeholder="p. ex. 1930, Los Altos (09014)">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="mf-text">Descripció</label>
+    <textarea class="form-control" id="mf-text" rows="7" required></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit">Envia</button>
+</form>
+<script>
+function mhistSend(e) {
+  e.preventDefault();
+  var type = document.getElementById("mf-type").value;
+  var name = document.getElementById("mf-name").value;
+  var where = document.getElementById("mf-where").value;
+  var text = document.getElementById("mf-text").value;
+  var subject = "[mapSpainHist] " + type + (where ? " - " + where : "");
+  var body = "Tipus: " + type + "\n" +
+             (name ? "Nom: " + name + "\n" : "") +
+             (where ? "Cens / municipi: " + where + "\n" : "") +
+             "\n" + text + "\n";
+  window.location.href = "mailto:pau.vall@ub.edu?subject=" + encodeURIComponent(subject) +
+                         "&body=" + encodeURIComponent(body);
+  return false;
+}
+</script>
+```
+
+Si el formulari no obre el vostre programa de correu, podeu escriure directament a [pau.vall@ub.edu](mailto:pau.vall@ub.edu).
+
+## GitHub
+
+Si teniu compte de GitHub, també podeu obrir una incidència (*issue*) al repositori. Queden registrades públicament i es pot seguir com es resolen:
+
+- [Notificar un problema](https://github.com/pauvallprat/mapSpainHist/issues/new?template=problem.yml)
+- [Fer un suggeriment](https://github.com/pauvallprat/mapSpainHist/issues/new?template=suggestion.yml)
+- [Veure les incidències obertes](https://github.com/pauvallprat/mapSpainHist/issues)

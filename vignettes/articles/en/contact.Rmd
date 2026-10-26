@@ -1,0 +1,63 @@
+---
+title: "Problems and suggestions"
+description: "How to report errors or make suggestions about the maps and the data."
+---
+
+If you find an error in the maps or in the data (a misplaced municipality, a wrong boundary, a wrong code...) or want to make a suggestion, please let me know. Your feedback helps improve the package.
+
+## Form
+
+Fill in the form and press **Send**: your e-mail program will open with the message ready, addressed to [pau.vall@ub.edu](mailto:pau.vall@ub.edu). You just need to send it.
+
+```{=html}
+<form id="mhist-form" class="mhist-form" onsubmit="return mhistSend(event)">
+  <div class="mb-3">
+    <label class="form-label" for="mf-type">Type</label>
+    <select class="form-select" id="mf-type">
+      <option>Problem</option>
+      <option>Suggestion</option>
+      <option>Question</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="mf-name">Name and affiliation (optional)</label>
+    <input class="form-control" type="text" id="mf-name">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="mf-where">Census, municipality or unit concerned (optional)</label>
+    <input class="form-control" type="text" id="mf-where" placeholder="e.g. 1930, Los Altos (09014)">
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="mf-text">Description</label>
+    <textarea class="form-control" id="mf-text" rows="7" required></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit">Send</button>
+</form>
+<script>
+function mhistSend(e) {
+  e.preventDefault();
+  var type = document.getElementById("mf-type").value;
+  var name = document.getElementById("mf-name").value;
+  var where = document.getElementById("mf-where").value;
+  var text = document.getElementById("mf-text").value;
+  var subject = "[mapSpainHist] " + type + (where ? " - " + where : "");
+  var body = "Type: " + type + "\n" +
+             (name ? "Name: " + name + "\n" : "") +
+             (where ? "Census / municipality: " + where + "\n" : "") +
+             "\n" + text + "\n";
+  window.location.href = "mailto:pau.vall@ub.edu?subject=" + encodeURIComponent(subject) +
+                         "&body=" + encodeURIComponent(body);
+  return false;
+}
+</script>
+```
+
+If the form does not open your e-mail program, you can write directly to [pau.vall@ub.edu](mailto:pau.vall@ub.edu).
+
+## GitHub
+
+If you have a GitHub account, you can also open an issue in the repository. Issues are public and you can follow how they are solved:
+
+- [Report a problem](https://github.com/pauvallprat/mapSpainHist/issues/new?template=problem.yml)
+- [Make a suggestion](https://github.com/pauvallprat/mapSpainHist/issues/new?template=suggestion.yml)
+- [See open issues](https://github.com/pauvallprat/mapSpainHist/issues)

@@ -3,16 +3,44 @@ url: https://pauvallprat.github.io/mapSpainHist/
 template:
   bootstrap: 5
   bslib:
-    primary: "#8c3b1e"
+    primary: "#5a3a22"
 
 home:
   title: "mapSpainHist: Historical Municipal Boundaries of Spain (1900-2001)"
 
 navbar:
   structure:
-    left: [reference, catala, news]
+    left: [english, castellano, catala, reference, news]
     right: [search, github]
   components:
+    english:
+      text: English
+      menu:
+        - text: Introduction
+          href: articles/en/introduction.html
+        - text: Higher-level units and data aggregation
+          href: articles/en/units.html
+        - text: Guide to functions and data
+          href: articles/en/functions.html
+        - text: Methodology, sources and warnings
+          href: articles/en/methodology.html
+        - text: Problems and suggestions
+          href: articles/en/contact.html
+    castellano:
+      text: Castellano
+      menu:
+        - text: Introducción
+          href: articles/es/introduccion.html
+        - text: Unidades superiores y agregación de datos
+          href: articles/es/unidades.html
+        - text: Guía de funciones y datos
+          href: articles/es/funciones.html
+        - text: Metodología, fuentes y advertencias
+          href: articles/es/metodologia.html
+        - text: Problemas y sugerencias
+          href: articles/es/contacto.html
+        - text: "README en castellano"
+          href: https://github.com/pauvallprat/mapSpainHist/blob/main/README.es.md
     catala:
       text: Català
       menu:
@@ -24,6 +52,10 @@ navbar:
           href: articles/ca/funcions.html
         - text: Metodologia, fonts i advertiments
           href: articles/ca/metodologia.html
+        - text: Problemes i suggeriments
+          href: articles/ca/contacte.html
+        - text: "README en català"
+          href: https://github.com/pauvallprat/mapSpainHist/blob/main/README.ca.md
 
 reference:
   - title: Maps
@@ -46,6 +78,22 @@ reference:
       - mapSpainHist-package
 
 articles:
+  - title: English
+    navbar: ~
+    contents:
+      - articles/en/introduction
+      - articles/en/units
+      - articles/en/functions
+      - articles/en/methodology
+      - articles/en/contact
+  - title: Castellano
+    navbar: ~
+    contents:
+      - articles/es/introduccion
+      - articles/es/unidades
+      - articles/es/funciones
+      - articles/es/metodologia
+      - articles/es/contacto
   - title: Català
     navbar: ~
     contents:
@@ -53,3 +101,4 @@ articles:
       - articles/ca/unitats
       - articles/ca/funcions
       - articles/ca/metodologia
+      - articles/ca/contacte

@@ -1,0 +1,82 @@
+---
+title: "Guide to functions and data"
+description: "Overview of all the functions, arguments and tables of the package."
+---
+
+This guide summarises the contents of the package help. For the full reference, see the
+*Reference* section of the website or `?function_name` in R.
+
+## Map functions
+
+### `esp_get_munic_hist()`
+
+Municipalities in force at a census.
+
+| Argument | Description |
+|---|---|
+| `year` | Census year: 1900, 1910, 1920, 1930, 1940, 1950, 1960, 1970, 1981, 1991 or 2001. |
+| `epsg` | Output coordinate reference system. By default, 4258 (ETRS89), as in mapSpain. |
+| `moveCAN` | Position of the Canary Islands. `FALSE` (default): real position. `TRUE`: next to the Peninsula, as `mapSpain::esp_move_can()` does; to draw the box that separates them, use `mapSpain::esp_get_can_box()`. A vector `c(lon, lat)` adds an extra displacement. |
+| `include_nonmunicipal` | If `FALSE`, non-municipal territories (codes 53xxx) are dropped. |
+| `census_data` | If `TRUE` (default), the census figures are added (`censos` table). If `FALSE`, only `cod_ine`, `no_munic` and the geometry are returned. |
+| `cache_dir` | Cache directory. By default, the one given by `mhist_cache_dir()`. |
+| `update_cache` | If `TRUE`, downloads the geometries again. |
+| `verbose` | If `TRUE`, shows download messages. |
+
+Returns an `sf` object with one row per municipality, or `NULL` (with a message) if the geometries
+cannot be downloaded.
+
+### `esp_get_prov_hist()`, `esp_get_pj_hist()`, `esp_get_circ_hist()`
+
+Provinces (every census), judicial districts (1900, 1910, 1920 and 1930) and electoral districts
+(1920: districts for the Cortes; 1931, 1933 and 1936: constituencies of the Second Republic). They
+have the arguments `year`, `epsg`, `moveCAN`, `cache_dir`, `update_cache` and `verbose` as
+`esp_get_munic_hist()`, and:
+
+| Argument | Description |
+|---|---|
+| `census_data` | If `TRUE` (default), the sum of the census figures of the municipalities of each unit is added. For the 1920 districts the 1920 census is used; for the constituencies of the Second Republic, the 1930 census. |
+
+They return an `sf` object with the columns `cod_unit`, `nom`, `n_mun` (number of municipalities)
+and, where applicable, `hogares`, `pder`, `phec` and `pob_serie`.
+
+## Helper functions
+
+| Function | Description |
+|---|---|
+| `mhist_census_years()` | Available census years. |
+| `mhist_cache_dir()` | Cache directory where the geometries are stored. |
+| `mhist_set_cache_dir()` | Changes the cache directory for the session. |
+| `mhist_clear_cache()` | Deletes the downloaded geometries. |
+
+## Data tables
+
+### `censos`
+
+Population census figures of every municipality between 1842 and 2011. A municipality is in force
+at a census when it has household figures (`hogares`).
+
+| Column | Description |
+|---|---|
+| `cod_ine` | INE municipality code (5 digits; 6 for municipalities extinct before 1900). |
+| `censo` | Census year. |
+| `municipio` | Municipality name. |
+| `prov` | Province. |
+| `cod_ccaa`, `ccaa` | Code and name of the autonomous community. |
+| `PJ` | Judicial district (available from 1897 to 1930). |
+| `hogares` | Households. |
+| `pder` | De jure population. |
+| `phec` | De facto population. |
+| `pob_serie` | Continuous population series. |
+| `no_munic` | 1 for non-municipal territories (53xxx), 0 otherwise. |
+
+### `unitats`
+
+Correspondence between municipalities and higher-level units, useful to aggregate municipal data.
+
+| Column | Description |
+|---|---|
+| `tipus` | `"prov"` (province), `"pj"` (judicial district) or `"circ"` (electoral district). |
+| `any` | Census year (provinces and judicial districts) or election year (1920, 1931, 1933, 1936). |
+| `cod_ine` | INE municipality code. |
+| `cod_unit` | Unit code (2 digits for provinces, 4 otherwise). |

@@ -7,7 +7,6 @@ date-released: 2026-10-26
 license: MIT
 repository-code: "https://github.com/pauvallprat/mapSpainHist"
 url: "https://pauvallprat.github.io/mapSpainHist/"
-doi: ZENODO_DOI_SOFTWARE
 authors:
   - family-names: "Vall Prat"
     given-names: "Pau"
@@ -23,10 +22,10 @@ keywords:
   - R
 references:
   - type: dataset
-    title: "Historical municipal boundaries of Spain, 1900-2001 (census editions)"
+    title: "Historical municipal boundaries of Spain, 1900-2001"
     authors:
       - family-names: "Vall Prat"
         given-names: "Pau"
         orcid: "https://orcid.org/0000-0003-1418-7833"
-    doi: ZENODO_DOI_DATA
+    doi: 10.5281/zenodo.23663208
     license: CC-BY-4.0

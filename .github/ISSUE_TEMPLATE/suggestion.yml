@@ -1,0 +1,10 @@
+name: "Suggestion / Sugerencia / Suggeriment"
+description: "Suggest an improvement or new data / Sugerir una mejora o nuevos datos / Suggerir una millora o noves dades"
+labels: ["suggestion"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Suggestion / Sugerencia / Suggeriment"
+    validations:
+      required: true

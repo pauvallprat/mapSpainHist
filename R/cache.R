@@ -7,7 +7,7 @@ mhist_data_version <- "1.0.0"
 mhist_data_file <- function() paste0("mapSpainHist_geometries_v", mhist_data_version, ".topojson.gz")
 mhist_data_url <- function() {
   getOption("mapSpainHist.url",
-            paste0("https://zenodo.org/records/ZENODO_RECORD/files/", mhist_data_file(), "?download=1"))
+            paste0("https://zenodo.org/records/23663208/files/", mhist_data_file(), "?download=1"))
 }
 
 #' Cache directory of mapSpainHist

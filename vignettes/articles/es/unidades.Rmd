@@ -1,0 +1,111 @@
+---
+title: "Unidades superiores y agregación de datos"
+description: "Provincias, partidos judiciales y distritos electorales históricos, y cómo agregar en ellos datos municipales."
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>", fig.width = 8, fig.height = 6, dpi = 110,
+  message = FALSE, warning = FALSE, dev.args = list(bg = "white"),
+  eval = !is.null(suppressMessages(mapSpainHist:::mhist_geometry_file()))
+)
+```
+
+```{r}
+library(mapSpainHist)
+library(ggplot2)
+```
+
+Además de los municipios, el paquete incluye unidades territoriales superiores construidas
+**fusionando los municipios de cada censo**. Por eso encajan exactamente con los mapas municipales:
+cada municipio pertenece a una sola unidad y las unidades no tienen huecos ni solapamientos entre
+ellas.
+
+| Función | Unidad | Años | Municipios de referencia |
+|---|---|---|---|
+| `esp_get_prov_hist()` | Provincias | todos los censos (1900-2001) | los del mismo censo |
+| `esp_get_pj_hist()` | Partidos judiciales | 1900, 1910, 1920, 1930 | los del mismo censo |
+| `esp_get_circ_hist()` | Distritos a Cortes de la Restauración | 1920 | censo de 1920 |
+| `esp_get_circ_hist()` | Circunscripciones de la II República | 1931, 1933, 1936 | censo de 1930 |
+
+Todas las funciones devuelven el código de la unidad (`cod_unit`), el nombre (`nom`), el número de
+municipios (`n_mun`) y, si `census_data = TRUE` (opción por defecto), la suma de los datos del censo
+de sus municipios (`hogares`, `pder`, `phec`, `pob_serie`).
+
+## Códigos de las unidades
+
+- **Provincias:** código INE de la provincia (2 cifras).
+- **Partidos judiciales y distritos electorales:** 4 cifras. Las dos primeras son la provincia y las
+  dos siguientes numeran las unidades por orden alfabético dentro de la provincia. Los partidos
+  judiciales tienen el mismo código en todos los censos.
+
+## Partidos judiciales
+
+```{r pj-1910, fig.alt = "Mapa de los partidos judiciales de España en 1910 coloreados según la población"}
+pj <- esp_get_pj_hist(1910, moveCAN = TRUE)
+head(sf::st_drop_geometry(pj))
+
+ggplot(pj) +
+  geom_sf(aes(fill = pder / 1000), colour = "white", linewidth = 0.1) +
+  scale_fill_viridis_c(option = "cividis", trans = "log10") +
+  geom_sf(data = mapSpain::esp_get_can_box(), colour = "grey50") +
+  labs(title = "Población de derecho por partido judicial, 1910", fill = "Miles de\nhabitantes") +
+  theme_void()
+```
+
+## Distritos electorales
+
+Los distritos a Cortes de 1920 son los de la Restauración. Las circunscripciones de 1931, 1933 y
+1936 son las de las elecciones de la II República; en algunas provincias las capitales forman una
+circunscripción propia.
+
+```{r distritos, fig.height = 4.5, fig.alt = "Mapas de los distritos a Cortes de 1920 y de las circunscripciones de 1933"}
+d1920 <- esp_get_circ_hist(1920, moveCAN = TRUE, census_data = FALSE)
+d1933 <- esp_get_circ_hist(1933, moveCAN = TRUE, census_data = FALSE)
+c(distritos_1920 = nrow(d1920), circunscripciones_1933 = nrow(d1933))
+
+d1920$tipo <- "Distritos a Cortes, 1920"
+d1933$tipo <- "Circunscripciones, 1933"
+ggplot(rbind(d1920, d1933)) +
+  geom_sf(fill = "grey95", colour = "grey20", linewidth = 0.15) +
+  geom_sf(data = mapSpain::esp_get_can_box(), colour = "grey50") +
+  facet_wrap(~tipo) +
+  theme_void()
+```
+
+## Agregar datos propios
+
+La tabla `unitats` indica a qué unidad pertenece cada municipio (`cod_ine`) para cada tipo
+(`prov`, `pj`, `circ`) y año. Permite agregar cualquier dato municipal. Por ejemplo, calculamos la
+proporción de población que vivía en municipios de más de 10.000 habitantes en cada
+circunscripción de 1933 (usando el censo de 1930):
+
+```{r agregacion, fig.alt = "Mapa de las circunscripciones de 1933 coloreadas según la proporción de población en municipios de más de 10.000 habitantes"}
+eq <- unitats[unitats$tipus == "circ" & unitats$any == 1933, ]
+c30 <- censos[censos$censo == 1930 & !is.na(censos$hogares), c("cod_ine", "pder")]
+d <- merge(eq, c30, by = "cod_ine")
+d$urbana <- ifelse(d$pder > 10000, d$pder, 0)
+
+ag <- aggregate(cbind(urbana, pder) ~ cod_unit, data = d, FUN = sum)
+ag$prop_urbana <- ag$urbana / ag$pder
+
+circ <- merge(esp_get_circ_hist(1933, moveCAN = TRUE), ag[, c("cod_unit", "prop_urbana")],
+              by = "cod_unit")
+ggplot(circ) +
+  geom_sf(aes(fill = prop_urbana), colour = "white", linewidth = 0.2) +
+  scale_fill_viridis_c(labels = scales::percent) +
+  geom_sf(data = mapSpain::esp_get_can_box(), colour = "grey50") +
+  labs(title = "Población en municipios de más de 10.000 habitantes, 1930",
+       subtitle = "Circunscripciones electorales de 1933", fill = NULL) +
+  theme_void()
+```
+
+## Territorios no municipales
+
+Los territorios no municipales (códigos 53xxx) se asignan:
+
+- a la **provincia** dentro de la cual cae el polígono (según las provincias del SIANE);
+- al **partido judicial** o **distrito electoral** de su provincia con el que comparten más
+  frontera.
+
+Melilla no tenía distrito a Cortes en 1920 y no aparece en ese mapa.

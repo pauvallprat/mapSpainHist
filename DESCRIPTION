@@ -13,7 +13,7 @@ Description: Municipal boundaries of Spain for each population census between
     single partition of the territory, so they have no gaps or overlaps and
     can be aggregated consistently. Boundaries of historical municipalities
     are an approximate reconstruction. Geometries are downloaded from 'Zenodo'
-    and cached locally.
+    <doi:10.5281/zenodo.23663208> and cached locally.
 License: MIT + file LICENSE
 URL: https://github.com/pauvallprat/mapSpainHist,
     https://pauvallprat.github.io/mapSpainHist/
@@ -30,6 +30,7 @@ Imports:
 Suggests:
     ggplot2,
     knitr,
+    mapSpain,
     rmarkdown,
     s2,
     testthat (>= 3.0.0)

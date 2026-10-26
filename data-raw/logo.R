@@ -1,4 +1,5 @@
-# Logo (hexàgon) del paquet: propostes ---------------------------------------------
+# Logo (hexàgon) del paquet ----------------------------------------------------------
+# Logo triat: proposta B (districtes a Corts de 1920), copiat a man/figures/logo.png.
 # Genera output/logo/proposta_*.png a partir de les dades del paquet. Cal tenir les
 # geometries disponibles (MAPSPAINHIST_DATA o descàrrega de Zenodo).
 
@@ -52,7 +53,8 @@ sticker(a, fons = "#3b2416", vora = "#c9a66b", text_col = "#f3e6c8",
 d1920$col <- sample(pal_terra, nrow(d1920), replace = TRUE)
 b <- ggplot(d1920) + geom_sf(aes(fill = col), colour = "#5a3a22", linewidth = 0.1) + scale_fill_identity()
 sticker(b, fons = "#f4ead5", vora = "#5a3a22", text_col = "#3b2416",
-        sub = "1900-2001 · censos", file = file.path(dir_logo, "proposta_B_districtes.png"))
+        file = file.path(dir_logo, "proposta_B_districtes.png"))
+file.copy(file.path(dir_logo, "proposta_B_districtes.png"), file.path("man", "figures", "logo.png"), overwrite = TRUE)
 
 # C. Abans i després: municipis de 1900 (fons) i de 2001 (línies), blau
 c1 <- ggplot() +

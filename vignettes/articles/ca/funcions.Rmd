@@ -16,7 +16,7 @@ Municipis vigents en un cens.
 |---|---|
 | `year` | Any del cens: 1900, 1910, 1920, 1930, 1940, 1950, 1960, 1970, 1981, 1991 o 2001. |
 | `epsg` | Sistema de referència de sortida. Per defecte, 4258 (ETRS89), com mapSpain. |
-| `moveCAN` | Posició de les Canàries. `FALSE` (per defecte): posició real. `TRUE`: al costat de la península, igual que `mapSpain::esp_move_can()`. Un vector `c(lon, lat)` afegeix un desplaçament addicional. |
+| `moveCAN` | Posició de les Canàries. `FALSE` (per defecte): posició real. `TRUE`: al costat de la península, igual que `mapSpain::esp_move_can()`; per dibuixar la caixa que les separa, feu servir `mapSpain::esp_get_can_box()`. Un vector `c(lon, lat)` afegeix un desplaçament addicional. |
 | `include_nonmunicipal` | Si és `FALSE`, s'exclouen els territoris no municipals (codis 53xxx). |
 | `census_data` | Si és `TRUE` (per defecte), s'hi afegeixen les dades del cens (taula `censos`). Si és `FALSE`, només es retorna `cod_ine`, `no_munic` i la geometria. |
 | `cache_dir` | Carpeta de la memòria cau. Per defecte, la de `mhist_cache_dir()`. |

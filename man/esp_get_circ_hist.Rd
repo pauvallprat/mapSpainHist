@@ -23,7 +23,9 @@ census (1920) or the 1930 census (1931-1936).}
 \item{moveCAN}{Position of the Canary Islands. `FALSE` (default) keeps their
 real position. `TRUE` moves them next to the Peninsula exactly as
 `mapSpain::esp_move_can()` does. A numeric vector `c(lon, lat)` adds an extra
-displacement, also as in mapSpain.}
+displacement, also as in mapSpain.
+When the islands are moved, draw the box that separates them with
+`mapSpain::esp_get_can_box()`, which matches this displacement.}
 
 \item{census_data}{If `TRUE` (default), adds the number of municipalities and
 the sum of the census figures (`hogares`, `pder`, `phec`, `pob_serie`) of the
