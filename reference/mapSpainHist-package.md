@@ -17,11 +17,11 @@ useful to represent municipal data graphically, but they must be used
 with caution when geographic variables matter (area, distances, exact
 borders): they are a useful but imperfect approximation.
 
-## Licences and sources
+## Licenses and sources
 
-The code of the package is released under the MIT licence. The data
+The code of the package is released under the MIT license. The data
 (geometries, \[censos\] and \[unitats\]) are released under the Creative
-Commons Attribution 4.0 International licence (CC BY 4.0). The reference
+Commons Attribution 4.0 International license (CC BY 4.0). The reference
 municipal boundaries derive from SIANE (Instituto Geográfico Nacional,
 CC BY 4.0); census figures come from the population censuses of the
 Instituto Nacional de Estadística (INE); municipal changes from

@@ -124,11 +124,11 @@ census). Melilla was not assigned to any district for the Cortes in
 - **Judicial districts and constituencies of the Second Republic:**
   information from the INE censuses and other secondary sources.
 
-## 5. Licences and citation
+## 5. Licenses and citation
 
-- **Package code:** MIT licence.
+- **Package code:** MIT license.
 - **Data** (geometries and the `censos` and `unitats` tables): Creative
-  Commons Attribution 4.0 International licence (CC BY 4.0).
+  Commons Attribution 4.0 International license (CC BY 4.0).
 
 If you use the package and/or its data, please cite them
 (`citation("mapSpainHist")`):
