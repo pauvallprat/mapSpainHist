@@ -126,9 +126,10 @@ census). Melilla was not assigned to any district for the Cortes in
 
 ## 5. Licenses and citation
 
-- **Package code:** MIT license.
-- **Data** (geometries and the `censos` and `unitats` tables): Creative
-  Commons Attribution 4.0 International license (CC BY 4.0).
+- **R package** (code and the bundled `censos` and `unitats` tables):
+  MIT license.
+- **Zenodo data deposit** (geometries, census tables and GeoPackage):
+  Creative Commons Attribution 4.0 International license (CC BY 4.0).
 
 If you use the package and/or its data, please cite them
 (`citation("mapSpainHist")`):

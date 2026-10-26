@@ -19,14 +19,17 @@ borders): they are a useful but imperfect approximation.
 
 ## Licenses and sources
 
-The code of the package is released under the MIT license. The data
-(geometries, \[censos\] and \[unitats\]) are released under the Creative
-Commons Attribution 4.0 International license (CC BY 4.0). The reference
-municipal boundaries derive from SIANE (Instituto Geográfico Nacional,
-CC BY 4.0); census figures come from the population censuses of the
-Instituto Nacional de Estadística (INE); municipal changes from
-\*Variaciones de los municipios de España desde 1842\* (MINAP); the 1920
-electoral districts from the source cited in the methodology.
+The package, including the bundled tables \[censos\] and \[unitats\], is
+released under the MIT license. The data deposit on Zenodo from which
+the geometries are downloaded
+([doi:10.5281/zenodo.23663208](https://doi.org/10.5281/zenodo.23663208)
+) is released under the Creative Commons Attribution 4.0 International
+license (CC BY 4.0). The reference municipal boundaries derive from
+SIANE (Instituto Geográfico Nacional, CC BY 4.0); census figures come
+from the population censuses of the Instituto Nacional de Estadística
+(INE); municipal changes from \*Variaciones de los municipios de España
+desde 1842\* (MINAP); the 1920 electoral districts from the source cited
+in the methodology.
 
 The full methodology is available on the package website (in Catalan,
 Spanish and English).
