@@ -89,9 +89,9 @@ citation("mapSpainHist")
 - Vall Prat, P. (2026). *Historical municipal boundaries of Spain, 1900-2001*
   [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23663208
 
-## Licences
+## Licenses
 
-- **Code:** [MIT](LICENSE.md) licence.
+- **Code:** [MIT](LICENSE.md) license.
 - **Data** (geometries and the `censos` and `unitats` tables):
   [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
 
