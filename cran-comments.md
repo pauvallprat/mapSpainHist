@@ -1,3 +1,11 @@
+## Resubmission
+
+This is a resubmission. In this version I have:
+
+* Replaced the relative links in README.md to files that are not part of the
+  package (README.es.md, README.ca.md, LICENSE.md) with absolute URLs to the
+  GitHub repository.
+
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
