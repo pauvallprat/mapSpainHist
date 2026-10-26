@@ -90,7 +90,7 @@ slivers.</p>
 
 
 <dl><dt id="arg-year">year<a class="anchor" aria-label="anchor" href="#arg-year"></a></dt>
-<dd><p>Census year, one of [mhist_census_years()].</p></dd>
+<dd><p>Census year, one of <code><a href="mhist_census_years.html">mhist_census_years()</a></code>.</p></dd>
 
 
 <dt id="arg-epsg">epsg<a class="anchor" aria-label="anchor" href="#arg-epsg"></a></dt>
@@ -98,51 +98,51 @@ slivers.</p>
 
 
 <dt id="arg-movecan">moveCAN<a class="anchor" aria-label="anchor" href="#arg-movecan"></a></dt>
-<dd><p>Position of the Canary Islands. `FALSE` (default) keeps their
-real position. `TRUE` moves them next to the Peninsula exactly as
-`mapSpain::esp_move_can()` does. A numeric vector `c(lon, lat)` adds an extra
+<dd><p>Position of the Canary Islands. <code>FALSE</code> (default) keeps their
+real position. <code>TRUE</code> moves them next to the Peninsula exactly as
+<code><a href="https://ropenspain.github.io/mapSpain/reference/esp_move_can.html" class="external-link">mapSpain::esp_move_can()</a></code> does. A numeric vector <code>c(lon, lat)</code> adds an extra
 displacement, also as in mapSpain.
 When the islands are moved, draw the box that separates them with
-`mapSpain::esp_get_can_box()`, which matches this displacement.</p></dd>
+<code><a href="https://ropenspain.github.io/mapSpain/reference/esp_get_can_box.html" class="external-link">mapSpain::esp_get_can_box()</a></code>, which matches this displacement.</p></dd>
 
 
 <dt id="arg-include-nonmunicipal">include_nonmunicipal<a class="anchor" aria-label="anchor" href="#arg-include-nonmunicipal"></a></dt>
-<dd><p>If `FALSE`, drops the non-municipal territories
-(codes 53xxx, `no_munic == 1`).</p></dd>
+<dd><p>If <code>FALSE</code>, drops the non-municipal territories
+(codes 53xxx, <code>no_munic == 1</code>).</p></dd>
 
 
 <dt id="arg-census-data">census_data<a class="anchor" aria-label="anchor" href="#arg-census-data"></a></dt>
-<dd><p>If `TRUE` (default), adds the census figures of `year`
-from [censos] (municipality name, province, households, population...).
-If `FALSE`, returns only `cod_ine`, `no_munic` and the geometry.</p></dd>
+<dd><p>If <code>TRUE</code> (default), adds the census figures of <code>year</code>
+from <a href="censos.html">censos</a> (municipality name, province, households, population...).
+If <code>FALSE</code>, returns only <code>cod_ine</code>, <code>no_munic</code> and the geometry.</p></dd>
 
 
 <dt id="arg-cache-dir">cache_dir<a class="anchor" aria-label="anchor" href="#arg-cache-dir"></a></dt>
-<dd><p>Cache directory. If `NULL`, [mhist_cache_dir()] is used.</p></dd>
+<dd><p>Cache directory. If <code>NULL</code>, <code><a href="mhist_cache_dir.html">mhist_cache_dir()</a></code> is used.</p></dd>
 
 
 <dt id="arg-update-cache">update_cache<a class="anchor" aria-label="anchor" href="#arg-update-cache"></a></dt>
-<dd><p>If `TRUE`, downloads the geometries again.</p></dd>
+<dd><p>If <code>TRUE</code>, downloads the geometries again.</p></dd>
 
 
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
-<dd><p>If `TRUE`, shows download messages.</p></dd>
+<dd><p>If <code>TRUE</code>, shows download messages.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>An `sf` object with one row per municipality, or `NULL` (with a
-  message) if the geometries cannot be downloaded.</p>
+    <p>An <code>sf</code> object with one row per municipality, or <code>NULL</code> (with a
+message) if the geometries cannot be downloaded.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The geometries are downloaded from Zenodo the first time and stored in a cache
-directory (see [mhist_cache_dir()]).</p>
+directory (see <code><a href="mhist_cache_dir.html">mhist_cache_dir()</a></code>).</p>
     </div>
     <div class="section level2">
     <h2 id="warning">Warning<a class="anchor" aria-label="anchor" href="#warning"></a></h2>
     <p>the boundaries of most historical municipalities are an
-  approximate reconstruction. See [mapSpainHist-package].</p>
+approximate reconstruction. See <a href="mapSpainHist-package.html">mapSpainHist-package</a>.</p>
     </div>
 
     <div class="section level2">

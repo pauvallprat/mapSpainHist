@@ -1,10 +1,10 @@
 # Census figures of Spanish municipalities, 1842-2011
 
 Population census data for every municipality and census edition, from
-\`Municipis_Espanya_1842-2011.xlsx\`. A municipality is in force at a
-census when \`hogares\` is not missing. Rows with \`no_munic == 1\` are
-the non-municipal territories (codes 53xxx) present in the maps, which
-have no census figures.
+`Municipis_Espanya_1842-2011.xlsx`. A municipality is in force at a
+census when `hogares` is not missing. Rows with `no_munic == 1` are the
+non-municipal territories (codes 53xxx) present in the maps, which have
+no census figures.
 
 ## Usage
 

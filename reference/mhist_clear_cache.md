@@ -13,11 +13,11 @@ mhist_clear_cache(cache_dir = NULL)
 
 - cache_dir:
 
-  Path of the cache directory. If \`NULL\`, returns the current one.
+  Path of the cache directory. If `NULL`, returns the current one.
 
 ## Value
 
-\`TRUE\` invisibly if a file was deleted, \`FALSE\` otherwise.
+`TRUE` invisibly if a file was deleted, `FALSE` otherwise.
 
 ## Examples
 
